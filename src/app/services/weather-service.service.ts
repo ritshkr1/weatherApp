@@ -19,9 +19,25 @@ export class WeatherService {
     return this.http.get(url);
   }
 
-  getSearchCity(city: string): Observable<any> {
+  getSearchCityAll(city: string): Observable<any> {
+    // &exclude=${'hourly,daily'}
+    const url = `${environment.baseWeatherUrl}/search.json?key=${environment.apiKey}&q=${city}`;
+    return this.http.get(url);
+  }
+
+  getSearchCity(): Observable<any> {
     // &exclude=${'hourly,daily'}
     const url = `${environment.countriesCitiesApiUrl}`;
     return this.http.get(url);
+  }
+
+  // Function to filter out cities of India from the response
+  filterCitiesOfIndia(data: any, search:string): string[] {
+    const indiaData = data.data.find((country: any) => country.country === search);
+    return indiaData ? indiaData.cities : [];
+  }
+
+  getAllCountryNames(res: any) {
+    return res.data.map((data:any) => data.country);
   }
 }
