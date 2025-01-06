@@ -9,6 +9,5 @@ import { WeatherCardComponent } from './weather-card/weather-card.component';
         AppComponent,
         WeatherCardComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        AppRoutingModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+    bootstrap: [AppComponent], imports: [BrowserModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
